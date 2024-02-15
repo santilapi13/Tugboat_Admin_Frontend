@@ -8,6 +8,8 @@ const endpoints = {
     remolcadores: `${URL}/remolcadores`,
     solicitantes: `${URL}/solicitantes`,
     tripulantes: `${URL}/tripulantes`,
+    users: `${URL}/users`,
+    register: `${URL}/sessions/signup`,
 }
 
 export default endpoints;

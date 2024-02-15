@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import endpoints from "./utils";
 import axios from 'axios';
 import Spinner from "react-bootstrap/Spinner";
 
-function Banderas() {
-    const [banderas, setBanderas] = useState([]);
+function ItemInsertion({ endpoint, itemName }) {
+    const [items, setItems] = useState([]);
     const [title, setTitle] = useState('');
     const [loading, setLoading] = useState(true);
 
@@ -12,9 +11,9 @@ function Banderas() {
         async function fetchData() {
             let response;
             try {
-                response = await axios.get(endpoints.banderas, { withCredentials: true });
+                response = await axios.get(endpoint, { withCredentials: true });
                 console.log('Respuesta del servidor:', response.data);
-                setBanderas(response.data.payload);
+                setItems(response.data.payload);
                 setLoading(false);
             } catch (error) {
                 if (error.response) {
@@ -29,7 +28,7 @@ function Banderas() {
         }
 
         fetchData();
-    }, []);
+    }, [endpoint]);
 
     const handleInputChange = (e) => {
         setTitle(e.target.value);
@@ -40,14 +39,14 @@ function Banderas() {
         let response;
     
         try {
-            response = await axios.post(endpoints.banderas, {
+            response = await axios.post(endpoint, {
             title: title,
         }, { withCredentials: true });
     
         console.log('Respuesta del servidor:', response.data);
 
-        const newBandera = response.data.payload;
-        setBanderas([...banderas, newBandera]);
+        const newItem = response.data.payload;
+        setItems([...items, newItem]);
         setTitle('');
 
         } catch (error) {
@@ -71,26 +70,26 @@ function Banderas() {
                 </div>
             ) : (
                 <div className="text-center p-1">
-                    <h1 className="pt-6 text-center font-bold text-4xl p-3">Cargar nueva bandera</h1>
+                    <h1 className="pt-6 text-center font-bold text-4xl p-3">Agregar { itemName }</h1>
                     <form onSubmit={ handleSubmit }>
                         <label>
                             <input
                                 className="px-3 py-2 my-3 text-xl rounded-3xl border border-solid border-black bg-zinc-300 placeholder:text-gray-600"
                                 type="text"
-                                placeholder="Nombre de la bandera..."
+                                placeholder="Nombre..."
                                 value = { title }
                                 onChange = { handleInputChange }
                             />
                         </label>
                         <br />
-                        <button className="px-6 py-2.5 ml-1 bg-gray-500 border-black text-white font-bold leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out" type="submit">Cargar</button>
+                        <button className="px-6 py-2.5 ml-1 bg-gray-500 border-black text-white font-bold leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out" type="submit">Agregar</button>
                     </form>
 
-                    <h1 className="pt-6 text-center font-bold text-4xl p-4">Listado de banderas</h1>
-                    { banderas.length == 0 && <h2>Aún no existe ninguna bandera.</h2> }
-                    <ul>
-                        { banderas.map((bandera) => (
-                            <li className="font-medium text-2xl p-1" key={ bandera.cod_bandera }>{ bandera.title }</li>
+                    <h1 className="text-center font-bold text-4xl pt-4">Listado</h1>
+                    { items.length == 0 && <h2>Aún no existen { itemName }s</h2> }
+                    <ul className="font-medium text-center text-2xl pt-1">
+                        { items.map((item) => (
+                            <li className="py-1" key={ item._id }>{ item.title }</li>
                         )) }
                     </ul>
                 </div>
@@ -99,4 +98,4 @@ function Banderas() {
     );
 }
 
-export default Banderas;
+export default ItemInsertion;

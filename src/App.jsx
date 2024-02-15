@@ -4,13 +4,9 @@ import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Home from "./components/Home";
 import NotFound from "./components/NotFound";
-import Banderas from "./components/Banderas";
-import Buques from "./components/Buques";
-import Capitanes from "./components/Capitanes";
-import Maniobras from "./components/Maniobras";
-import Remolcadores from "./components/Remolcadores";
-import Solicitantes from "./components/Solicitantes";
-import Tripulantes from "./components/Tripulantes";
+import ItemInsertion from "./components/ItemInsertion";
+import PersonInsertion from "./components/PersonInsertion";
+import endpoints from "./utils";
 
 function App() {
   return (
@@ -19,13 +15,13 @@ function App() {
       <Routes>
         <Route path="*" element={<NotFound />} />
         <Route path="/" element={<Home />} />
-        <Route path="/banderas" element={<Banderas />} />
-        <Route path="/buques" element={<Buques />} />
-        <Route path="/capitanes" element={<Capitanes />} />
-        <Route path="/maniobras" element={<Maniobras />} />
-        <Route path="/remolcadores" element={<Remolcadores />} />
-        <Route path="/solicitantes" element={<Solicitantes />} />
-        <Route path="/tripulantes" element={<Tripulantes />} />
+        <Route path="/banderas" element={<ItemInsertion endpoint={ endpoints.banderas } itemName="bandera"/>} />
+        <Route path="/buques" element={<ItemInsertion endpoint={ endpoints.buques } itemName="buque"/>} />
+        <Route path="/capitanes" element={<PersonInsertion endpoint={ endpoints.capitanes } personName="capitán"/>} />
+        <Route path="/maniobras" element={<ItemInsertion endpoint={ endpoints.maniobras } itemName="maniobra"/>} />
+        <Route path="/remolcadores" element={<ItemInsertion endpoint={ endpoints.remolcadores } itemName="remolcador"/>} />
+        <Route path="/solicitantes" element={<ItemInsertion endpoint={ endpoints.solicitantes } itemName="solicitante"/>} />
+        <Route path="/tripulantes" element={<PersonInsertion endpoint={ endpoints.tripulantes } personName="tripulante"/>} />
       </Routes>
     </>
   );
