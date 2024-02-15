@@ -40,6 +40,9 @@ function Navbar() {
                 <Link onClick={handleClick} to="/tripulantes" className={`mr-4 text-xl md:text-base md:text-white md:inline ${clicked ? "text-3xl mt-4" : ""}`}>
                     Tripulantes
                 </Link>
+                <Link onClick={handleClick} to="/users" className={`mr-4 text-xl md:text-base md:text-white md:inline ${clicked ? "text-3xl mt-4" : ""}`}>
+                    Usuarios
+                </Link>
             </div>
         </div>
     </>
