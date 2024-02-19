@@ -1,12 +1,12 @@
 import "./App.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Routes, Route } from "react-router-dom";
-import Navbar from "./components/Navbar";
-import Home from "./components/Home";
-import NotFound from "./components/NotFound";
-import ItemInsertion from "./components/ItemInsertion";
-import PersonInsertion from "./components/PersonInsertion";
-import Users from "./components/Users";
+import Navbar from "./components/app/Navbar";
+import Home from "./components/app/Home";
+import NotFound from "./components/app/NotFound";
+import ItemInsertion from "./components/app/ItemInsertion";
+import PersonInsertion from "./components/app/PersonInsertion";
+import Users from "./components/app/Users";
 import endpoints from "./utils";
 
 function App() {
@@ -15,7 +15,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="*" element={<NotFound />} />
-        <Route path="/" element={<Home />} />
+        <Route path="/home" element={<Home />} />
         <Route path="/banderas" element={<ItemInsertion endpoint={ endpoints.banderas } itemName="bandera"/>} />
         <Route path="/buques" element={<ItemInsertion endpoint={ endpoints.buques } itemName="buque"/>} />
         <Route path="/capitanes" element={<PersonInsertion endpoint={ endpoints.capitanes } personName="capitán"/>} />

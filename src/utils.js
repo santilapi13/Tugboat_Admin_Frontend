@@ -10,6 +10,8 @@ const endpoints = {
     tripulantes: `${URL}/tripulantes`,
     users: `${URL}/users`,
     register: `${URL}/sessions/signup`,
+    login: `${URL}/sessions/login`,
+    logout: `${URL}/sessions/logout`
 }
 
 export default endpoints;
