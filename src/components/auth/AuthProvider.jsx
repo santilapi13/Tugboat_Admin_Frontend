@@ -39,7 +39,7 @@ export function AuthProvider({ children }) {
 
             if (userStorage.expirationTime > Date.now()) {
                 console.log("Usuario almacenado con localStorage: " + userStorage.username);
-                setUser(JSON.parse(userStorage));
+                setUser(userStorage);
                 setIsAuthenticated(true);
                 return userStorage;
             }
