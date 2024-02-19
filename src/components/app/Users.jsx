@@ -106,7 +106,7 @@ function Users({ endpointUsers, endpointRegister }) {
                             <input
                                 className="px-3 py-2 my-3 text-xl rounded-3xl border border-solid border-black bg-zinc-300 placeholder:text-gray-600"
                                 type="text"
-                                placeholder="Nombre..."
+                                placeholder="Usuario..."
                                 value = { username }
                                 onChange = { handleUsernameChange }
                             />

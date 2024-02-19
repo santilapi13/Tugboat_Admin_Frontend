@@ -1,13 +1,19 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useAuth } from "../auth/AuthProvider";
 
 function Navbar() {
     const [clicked, setClicked] = useState(false);
+    const auth = useAuth();
 
     const handleClick = () => {
         if (window.innerWidth < 768) {
             setClicked(!clicked);
         }
+    };
+
+    const handleLogout = () => {
+        auth.signout();
     };
 
     return (
@@ -16,7 +22,7 @@ function Navbar() {
             <h2 className="text-white font-normal text-2xl">Administración</h2>
 
             <div className={`z-50 absolute offScreen right-0 mr-auto ml-auto text-center ease-in-out md:static md:m-0 text-white ${clicked ? "w-full block top-1/3 left-0 mt-2" : ""}`}>
-                <Link onClick={handleClick} to="/" className={`mr-4 text-xl md:text-base md:text-white md:inline ${clicked ? "text-3xl mt-4" : ""}`}>
+                <Link onClick={handleClick} to="/home" className={`mr-4 text-xl md:text-base md:text-white md:inline ${clicked ? "text-3xl mt-4" : ""}`}>
                     Home
                 </Link>
                 <Link onClick={handleClick} to="/banderas" className={`mr-4 text-xl md:text-base md:text-white md:inline ${clicked ? "text-3xl mt-4" : ""}`}>
@@ -43,6 +49,7 @@ function Navbar() {
                 <Link onClick={handleClick} to="/users" className={`mr-4 text-xl md:text-base md:text-white md:inline ${clicked ? "text-3xl mt-4" : ""}`}>
                     Usuarios
                 </Link>
+                <button onClick={handleLogout} className={`mr-4 text-xl md:text-base md:text-white md:inline ${clicked ? "text-3xl mt-4" : ""}`}>Cerrar sesión</button>
             </div>
         </div>
     </>
