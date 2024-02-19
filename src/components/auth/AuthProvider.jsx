@@ -15,9 +15,11 @@ export function AuthProvider({ children }) {
     const [isloading, setIsLoading] = useState(true);
     
     function saveUser(userData) {
+        console.log(userData.maxAge)
         const user = {
             username: userData.username,
             role: userData.role,
+            expirationTime: Date.now() + userData.maxAge,
         }
 
         setUser(user);
@@ -26,18 +28,25 @@ export function AuthProvider({ children }) {
     }
 
     function getUser() {
-        if (user) {
+        if (user && user.expirationTime > Date.now()) {
             console.log("Usuario almacenado con useState: " + user.username);
             return user;
         }
 
-        const userStorage = localStorage.getItem("user");
+        let userStorage = localStorage.getItem("user");
         if (userStorage) {
-            console.log("Usuario almacenado con localStorage: " + JSON.parse(userStorage).username);
-            setUser(JSON.parse(userStorage));
-            setIsAuthenticated(true);
+            userStorage = JSON.parse(userStorage);
+
+            if (userStorage.expirationTime > Date.now()) {
+                console.log("Usuario almacenado con localStorage: " + userStorage.username);
+                setUser(JSON.parse(userStorage));
+                setIsAuthenticated(true);
+                return userStorage;
+            }
+
+            localStorage.removeItem("user");
         }
-        return userStorage;
+        return null;
     }
 
     async function signout() {

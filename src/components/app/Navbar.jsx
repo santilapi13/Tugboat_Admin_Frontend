@@ -7,6 +7,7 @@ function Navbar() {
     const auth = useAuth();
 
     const handleClick = () => {
+        auth.checkAuth();
         if (window.innerWidth < 768) {
             setClicked(!clicked);
         }
