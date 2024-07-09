@@ -1,13 +1,9 @@
-# React + Vite
+# Simple Frontend for Tugboats Management  🛳🚢
+The main project can be visualized here: https://github.com/santilapi13/Tugboat_API_REST
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Views included
+### Login
+![Captura](https://github.com/santilapi13/Tugboat_Admin_Frontend/assets/89311154/2680a5e9-36c1-453e-9f40-41d4ee7cb10c)
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-
-# TO DO:
-- Hacer un componente generalizable a partir del componente Banderas.
-- Implementar login.
+### CRUD operations
+![Captura](https://github.com/santilapi13/Tugboat_Admin_Frontend/assets/89311154/41b97587-b7a5-4c82-9ba5-5efae3405de7)
